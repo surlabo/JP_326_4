@@ -1,29 +1,51 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject originalCube;
-    public Transform cubeParent;
-    public float distanceBetweenCubes;
+    public static GameManager Instance;
+
+    [HideInInspector] public bool isGamePoused;
+
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private Transform[] spawnPoints;
+
+    private GameObject player;
+
+    
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
-        StartCoroutine(StopWatch());
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    var cubeClone = Instantiate(originalCube, new Vector3(i * distanceBetweenCubes, 1, 1), Quaternion.identity);
-        //    cubeClone.transform.parent = cubeParent;
-        //}
+        StartGame();
     }
 
-    private float clock = 0;
-    IEnumerator StopWatch()
+    private void StartGame()
     {
-        while (true)
-        {
-            yield return null;
-            Debug.Log(clock += Time.deltaTime);
-        }
+        Camera.main.gameObject.SetActive(false);
+        SpawnPlayer();
+    }
+
+    private void SpawnPlayer()
+    {
+        var index = PlayerPrefs.GetInt("SpawnPointIndex");
+        var spawnPoint = spawnPoints[index];
+        player = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
+    }
+
+    public void RespawnPlayer()
+    {
+        var index = PlayerPrefs.GetInt("SpawnPointIndex");
+        player.transform.position = spawnPoints[index].position;
+    }
+
+    public void ChangeSpawnPoint(int spawnPointIdex)
+    {
+        PlayerPrefs.SetInt("SpawnPointIndex", spawnPointIdex);
     }
 }

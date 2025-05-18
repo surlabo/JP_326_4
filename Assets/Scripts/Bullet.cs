@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator DestoryDelay()
     {
-        yield return null;
+        yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
 }

@@ -246,7 +246,8 @@ GameObject:
   - component: {fileID: 5006096265324471102}
   - component: {fileID: 5370372089656817377}
   - component: {fileID: 5156362715538314637}
-  - component: {fileID: 3027875430318644298}
+  - component: {fileID: 3534449402629213094}
+  - component: {fileID: 5572763685928620020}
   m_Layer: 0
   m_Name: FirstPersonController
   m_TagString: Player
@@ -417,7 +418,7 @@ MonoBehaviour:
   sprintBar: {fileID: 6241663173380418805}
   sprintBarWidthPercent: 0.3
   sprintBarHeightPercent: 0.02
-  enableJump: 1
+  enableJump: 0
   jumpKey: 32
   jumpPower: 5
   enableCrouch: 1
@@ -429,7 +430,7 @@ MonoBehaviour:
   joint: {fileID: 2917392658735568661}
   bobSpeed: 10
   bobAmount: {x: 0, y: 0.1, z: 0}
---- !u!114 &3027875430318644298
+--- !u!114 &3534449402629213094
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -438,11 +439,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 3376426530609373578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20248e2e5174b5443a1090465ff9514e, type: 3}
+  m_Script: {fileID: 11500000, guid: fb02d15756add9841b6e044d11494ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7816572156618596097, guid: 631afb80e18e64f4ba5205d80cfff083, type: 3}
-  spawnPoint: {fileID: 5740446912679428619}
+  jumpForce: 550
+  detectionDistance: 1.2
+--- !u!114 &5572763685928620020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3376426530609373578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fa74baf2113294cbe289d164fbbd50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathPoint: -10
 --- !u!1 &5912776728682938188
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +469,8 @@ GameObject:
   - component: {fileID: 5756372116374541983}
   - component: {fileID: 4968092229446692194}
   - component: {fileID: 3132924364665890883}
+  - component: {fileID: 6613132937122579260}
+  - component: {fileID: 7239636425431589972}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -582,6 +598,41 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &6613132937122579260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5912776728682938188}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20248e2e5174b5443a1090465ff9514e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7816572156618596097, guid: 631afb80e18e64f4ba5205d80cfff083, type: 3}
+  spawnPoint: {fileID: 5740446912679428619}
+  shootForce: 500
+--- !u!114 &7239636425431589972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5912776728682938188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 771ba5991e867ca4fb2a34d5accc09e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 100
+  myColor: {r: 0, g: 0, b: 0, a: 0}
+  raycastColor: {r: 1, g: 0, b: 0.9233203, a: 1}
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 72
+  enemyTag: Enemy
+  targetTag: Target
 --- !u!1 &5913143237818804991
 GameObject:
   m_ObjectHideFlags: 0

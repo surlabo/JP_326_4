@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,6 +31,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        
+        if (GameManager.Instance.isGamePoused) return;
+
         dir.x = Input.GetAxisRaw("Vertical");
         dir.Normalize();
 
@@ -42,6 +46,8 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+   
 
     private void OnCollisionEnter(Collision collision)
     {

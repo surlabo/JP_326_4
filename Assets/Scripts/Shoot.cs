@@ -12,6 +12,7 @@ public class Shoot : MonoBehaviour
 
     public void  ShootBullet()
     {
+        if (GameManager.Instance.isGamePoused) return;
         var bulletClone = Instantiate(bulletPrefab, 
             spawnPoint.position, Quaternion.identity);
         var bulletRgidbody = bulletClone.GetComponent<Rigidbody>();
